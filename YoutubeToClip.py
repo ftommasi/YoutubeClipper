@@ -14,7 +14,7 @@ MP3_DIR = "mp3/"
 
 
 def print_error():
-  print "error"
+  print "usage: YoutubeClipper [d (download) | p (play)] [url]"
 
 #start_time and end_time are in milliseconds
 class YoutubeToClip():
