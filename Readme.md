@@ -1,5 +1,5 @@
-USE:
+DEPENDENCY:
+  pip install pydub pytube pygame
 
-pip install pydub pytube pygame
-
-IN ORDER TO USE THIS TOOL
+USAGE:
+  python YoutubeClipper [d (download) | p (play)] [url]
