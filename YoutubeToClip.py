@@ -43,7 +43,15 @@ class YoutubeToClip():
       os.remove(video_with_directory)
     return output_filename
   
-  
+  def download_full_video(self,url, clipped_output_name ,delete_mp4 = False, delete_full_mp3 = False):
+    yt = YouTube(url)
+    ytvid = yt.filter("mp4")[-1]
+    target_video = MP4_DIR + clipped_output_name.split(".")[0] + "_temp.mp4" 
+    ytvid.download(target_video)
+    target_video_mp3 = self.convert_mp4_to_mp3(target_video,delete_mp4)
+    return target_video_mp3
+
+
   def download_and_clip_video(self,url, clipped_output_name, clip_start_time, clip_end_time ,delete_mp4 = False, delete_full_mp3 = False):
     yt = YouTube(url)
     ytvid = yt.filter("mp4")[-1]
@@ -73,6 +81,12 @@ class YoutubeToClip():
         pygame.time.wait(2*(int(args[5]) - int(args[4])))
         print "done."
         os.remove(clipped_mp3)
+    elif args[1].startswith("f"):
+      if len(args) < 4:
+        print_error()
+      else:
+        print MP3_DIR + self.download_full_video(args[2], args[3], True, True)
+
 
 
 
